@@ -2,7 +2,7 @@ const pythonBridge = require('python-bridge');
 const python = pythonBridge();
 python.ex`import os, platform, subprocess, re, psutil`
 const Discord = require("discord.js");
-const dcclient = new Discord.Client();
+//const dcclient = new Discord.Client();
 const WebSocket = require("ws");
 const serverAddress = 'ws://servers.crosside.eu/';
 const rcon = require("rcon-client")
