@@ -1,0 +1,26 @@
+{
+  "name": "servermanager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "npm i python-bridge && npm i ws && npm i rcon-client",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iguessiplay/servermanager.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iguessiplay/servermanager/issues"
+  },
+  "homepage": "https://github.com/iguessiplay/servermanager#readme",
+  "dependencies": {
+    "discord.js": "^13.7.0",
+    "python-bridge": "^1.1.0",
+    "rcon-client": "^4.2.3",
+    "ws": "^8.6.0"
+  }
+}
