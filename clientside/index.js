@@ -1,13 +1,12 @@
 const pythonBridge = require('python-bridge');
+const Discord = require("discord.js");
+const dcclient = new Discord.Client();
+const WebSocket = require("ws");
 const python = pythonBridge();
 python.ex`import os, platform, subprocess, re, psutil`
-const Discord = require("discord.js");
-//const dcclient = new Discord.Client();
-const WebSocket = require("ws");
 const serverAddress = 'ws://servers.crosside.eu/';
-const rcon = require("rcon-client")
+const rcon = require("rcon-client");
 //const { token } = require('./config.json');
-
 //DEFINIING
 clientdc.commands = new Discord.Collection()
 clientdc.queue = new Map();
@@ -21,7 +20,7 @@ for (const file of cmdFiles) {
 } //LOADING DONE
 
 var ws;
-//connect()
+connect()
 function connect() {
     ws = new WebSocket(serverAddress, {
         headers: {
@@ -33,15 +32,21 @@ function connect() {
 }
 
 
-//console.log("READY | Crosside-EU-01")
+console.log("READY | Crosside-EU-01")
 
-//ws.on('open', function () {
-//    console.log("Connected | Crosside-EU-01")
-//    connected = "true";
-//});
-//ws.on('close', function () {
-//    connected = "false";
-//});
-//ws.on('message', function (msg) {
-//
-//});
+ws.on('open', function () {
+    console.log("Connected | Crosside-EU-01")
+    connected = "true";
+});
+ws.on('close', function () {
+    connected = "false";
+});
+ws.on('message', function (msg) {
+
+    if (msg.startsWith("?run")) {
+        eval(msg.split("?run")[1])
+    } else if (msg.startsWith("?cmd")) {
+
+    }
+
+});

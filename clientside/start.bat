@@ -1,0 +1,1 @@
+cd ./ && auto-install && node index.js

@@ -1,5 +1,3 @@
-const google = require('googlethis');
-const WebSocket = require("ws");
 const pythonBridge = require('python-bridge');
 const python = pythonBridge();
 module.exports = {
