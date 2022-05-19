@@ -1,1 +1,1 @@
-cd ./ && auto-install && node index.js
+cd ./ && auto-install && npm start
