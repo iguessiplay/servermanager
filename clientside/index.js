@@ -1,52 +1,33 @@
-const pythonBridge = require('python-bridge');
-const Discord = require("discord.js");
-const dcclient = new Discord.Client();
-const WebSocket = require("ws");
-const python = pythonBridge();
-python.ex`import os, platform, subprocess, re, psutil`
-const serverAddress = 'ws://servers.crosside.eu/';
-const rcon = require("rcon-client");
-//const { token } = require('./config.json');
-//DEFINIING
-clientdc.commands = new Discord.Collection()
-clientdc.queue = new Map();
-clientdc.vote = new Map();
+const { app, BrowserWindow } = require('electron');
 
-//LETS LOAD ALL FILES
-const cmdFiles = readdirSync(join(__dirname, "system")).filter(file => file.endsWith(".js"))
-for (const file of cmdFiles) {
-    const command = require(join(__dirname, "system", file))
-    clientdc.commands.set(command.name, command)
-} //LOADING DONE
-
-var ws;
-connect()
-function connect() {
-    ws = new WebSocket(serverAddress, {
-        headers: {
-            "user-agent": "Mozilla",
-            'token': `${token}`
+function createWindow() {
+    const win = new BrowserWindow({
+        height: 200,
+        width: 600,
+        webPreferences: {
+            nodeIntegration: true,
+            enableRemoteModule: true
         },
-        noServer: true
+        frame: false,
+        maximizable: false,
+        minimizable: false,
+        title: 'Update Test',
     });
+
+    win.setTitle('Update Test');
+    win.loadFile('src/html/index.html');
 }
 
+app.whenReady().then(createWindow);
 
-console.log("READY | Crosside-EU-01")
-
-ws.on('open', function () {
-    console.log("Connected | Crosside-EU-01")
-    connected = "true";
-});
-ws.on('close', function () {
-    connected = "false";
-});
-ws.on('message', function (msg) {
-
-    if (msg.startsWith("?run")) {
-        eval(msg.split("?run")[1])
-    } else if (msg.startsWith("?cmd")) {
-
+app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+        app.quit();
     }
+});
 
+app.on('activate', () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+        createWindow();
+    }
 });
